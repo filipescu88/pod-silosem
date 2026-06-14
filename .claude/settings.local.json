@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:podsilosem.pl)",
+      "Bash(curl -sL \"https://podsilosem.pl\" -o page.html)"
+    ]
+  }
+}
