@@ -254,6 +254,7 @@
         <div class="hero-actions">
           <a href="tel:+48512720750" class="btn btn-primary">Zadzwoń teraz</a>
           <a href="mailto:zedkrzeminski@poczta.onet.pl?subject=Zapytanie%20o%20rezerwacj%C4%99%20-%20Pod%20Silosem" class="btn btn-ghost">Napisz e-mail</a>
+          <a href="https://www.booking.com/hotel/pl/agroturystyka-gilawy.pl.html" class="btn btn-ghost js-book-booking" target="_blank" rel="noopener">Zarezerwuj online (Booking)</a>
         </div>
       </div>
       <div class="split-media">
@@ -307,14 +308,24 @@
   <script data-goatcounter="https://gilawy.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
 
-  <!-- Google Ads: konwersja na kliknięcie w numer telefonu -->
+  <!-- Google Ads: konwersje (telefon + Booking) -->
   <script>
+    function gilawyTrackConversion(sendTo) {
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', { 'send_to': sendTo });
+      }
+    }
     document.addEventListener('DOMContentLoaded', function () {
+      // Kliknięcie w numer telefonu
       document.querySelectorAll('a[href^="tel:"]').forEach(function (link) {
         link.addEventListener('click', function () {
-          if (typeof gtag === 'function') {
-            gtag('event', 'conversion', { 'send_to': 'AW-17350584286/WjOwCJOV_b8cEN7Ps9FA' });
-          }
+          gilawyTrackConversion('AW-17350584286/WjOwCJOV_b8cEN7Ps9FA');
+        });
+      });
+      // Kliknięcie "Zarezerwuj online (Booking)"
+      document.querySelectorAll('.js-book-booking').forEach(function (link) {
+        link.addEventListener('click', function () {
+          gilawyTrackConversion('AW-17350584286/6HXTCPCo_r8cEN7Ps9FA');
         });
       });
     });
