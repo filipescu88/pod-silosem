@@ -177,6 +177,37 @@ h3 { font-size: 1.5rem; }
 .amen h3 { font-size: 1.3rem; margin-bottom: .4rem; }
 .amen p { color: var(--muted); font-size: .96rem; }
 
+/* ---------- PLACES / MAPY DOJAZDOWE ---------- */
+.places-head { text-align: center; max-width: 680px; margin: 4rem auto 2.4rem; }
+.places-head h3 { font-size: clamp(1.7rem, 3vw, 2.2rem); margin-bottom: .4rem; }
+.places { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; }
+.place-card {
+  background: var(--white); border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow-sm); display: flex; flex-direction: column;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.place-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+.place-media { position: relative; aspect-ratio: 4/3; }
+.place-media iframe { width: 100%; height: 100%; border: 0; display: block; }
+.place-dist {
+  position: absolute; top: 12px; right: 12px;
+  background: var(--sage); color: #fff; font-weight: 700; font-size: .8rem;
+  padding: .35rem .85rem; border-radius: 999px; box-shadow: var(--shadow-sm);
+}
+.place-body { padding: 1.5rem 1.6rem 1.8rem; display: flex; flex-direction: column; flex: 1; }
+.place-body h3 { margin-bottom: .5rem; }
+.place-body p { color: var(--muted); font-size: .98rem; margin-bottom: 1.3rem; }
+.place-tip { display: block; margin-top: .7rem; color: var(--brown); font-size: .9rem; font-weight: 600; }
+.place-body .btn { margin-top: auto; }
+.place-card--soon {
+  align-items: center; justify-content: center; text-align: center;
+  border: 2px dashed rgba(107,79,58,.25); box-shadow: none; background: transparent;
+  min-height: 280px; padding: 2rem;
+}
+.place-card--soon:hover { transform: none; box-shadow: none; }
+.place-card--soon .amen-ico { margin-bottom: .6rem; }
+.place-card--soon p { color: var(--muted); margin-top: .3rem; }
+
 /* ---------- GALLERY ---------- */
 .gallery { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; gap: 14px; }
 .g-item { overflow: hidden; border-radius: var(--radius-sm); box-shadow: var(--shadow-sm); cursor: pointer; }
@@ -279,7 +310,7 @@ h3 { font-size: 1.5rem; }
   .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
   .hero { background-attachment: scroll; }
-  .cards, .amen-grid, .price-grid { grid-template-columns: 1fr 1fr; }
+  .cards, .amen-grid, .price-grid, .places { grid-template-columns: 1fr 1fr; }
   .split { grid-template-columns: 1fr; }
   .footer-wrap { grid-template-columns: 1fr; }
   .fab-call { display: flex; }
@@ -287,7 +318,7 @@ h3 { font-size: 1.5rem; }
 
 @media (max-width: 600px) {
   body { font-size: 16px; }
-  .cards, .amen-grid, .price-grid { grid-template-columns: 1fr; }
+  .cards, .amen-grid, .price-grid, .places { grid-template-columns: 1fr; }
   .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
   .g-wide { grid-column: span 2; grid-row: span 1; }
   .hero-actions { flex-direction: column; align-items: stretch; }
