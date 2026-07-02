@@ -19,6 +19,8 @@ index.html            — strona
 assets/css/style.css  — style (paleta natury / boho)
 assets/js/main.js     — menu mobilne + galeria (lightbox)
 assets/img/*.webp     — zdjęcia (zoptymalizowane WebP)
+favicon.ico           — ikona strony (16/32/48 px)
+apple-touch-icon.png  — ikona dla iOS
 ```
 
 ## Kontakt obiektu
