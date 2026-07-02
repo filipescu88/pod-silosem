@@ -229,6 +229,50 @@ h3 { font-size: 1.5rem; }
 .g-item:hover img { transform: scale(1.08); }
 .g-wide { grid-column: span 2; grid-row: span 2; }
 
+/* ---------- OPINIE ---------- */
+.hero-trust {
+  display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.6rem;
+  background: rgba(255,255,255,.14); backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,.28); border-radius: 999px;
+  padding: .5rem 1.2rem; font-size: .95rem; color: #fff;
+  transition: background .2s ease;
+}
+.hero-trust:hover { background: rgba(255,255,255,.26); }
+
+.score-badge {
+  margin-top: 1.6rem; display: inline-flex; align-items: center; gap: .95rem;
+  background: var(--white); padding: .65rem 1.5rem .65rem .65rem;
+  border-radius: 999px; box-shadow: var(--shadow-sm); text-align: left;
+}
+.score-num {
+  width: 58px; height: 58px; display: flex; align-items: center; justify-content: center;
+  background: var(--sage); color: #fff; border-radius: 16px;
+  font-family: var(--serif); font-size: 1.7rem; font-weight: 700;
+}
+.score-meta { font-size: .92rem; color: var(--muted); line-height: 1.4; }
+.score-meta strong { display: block; color: var(--ink); font-size: 1rem; }
+
+.reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; }
+.review-card {
+  background: var(--white); border-radius: var(--radius); padding: 1.9rem 1.8rem 1.6rem;
+  box-shadow: var(--shadow-sm); border: 1px solid rgba(107,79,58,.06);
+  display: flex; flex-direction: column; gap: 1.2rem; margin: 0;
+}
+.review-card blockquote {
+  font-family: var(--serif); font-size: 1.22rem; line-height: 1.45; color: #4f463b;
+}
+.review-card figcaption {
+  margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+.review-card figcaption strong { display: block; }
+.review-card figcaption small { color: var(--muted); }
+.review-score {
+  background: var(--sage); color: #fff; font-weight: 700; font-size: .8rem;
+  padding: .3rem .75rem; border-radius: 999px; white-space: nowrap;
+}
+.reviews-foot { text-align: center; margin-top: 2.6rem; }
+.reviews-src { margin-top: 1rem; font-size: .85rem; color: var(--muted); }
+
 /* ---------- PRICING ---------- */
 .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; align-items: stretch; }
 .price-card {
@@ -324,7 +368,7 @@ h3 { font-size: 1.5rem; }
   .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
   .hero { background-attachment: scroll; }
-  .cards, .amen-grid, .price-grid, .places { grid-template-columns: 1fr 1fr; }
+  .cards, .amen-grid, .price-grid, .places, .reviews { grid-template-columns: 1fr 1fr; }
   .split { grid-template-columns: 1fr; }
   .footer-wrap { grid-template-columns: 1fr; }
   .fab-call { display: flex; }
@@ -332,7 +376,7 @@ h3 { font-size: 1.5rem; }
 
 @media (max-width: 600px) {
   body { font-size: 16px; }
-  .cards, .amen-grid, .price-grid, .places { grid-template-columns: 1fr; }
+  .cards, .amen-grid, .price-grid, .places, .reviews { grid-template-columns: 1fr; }
   .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
   .g-wide { grid-column: span 2; grid-row: span 1; }
   .hero-actions { flex-direction: column; align-items: stretch; }

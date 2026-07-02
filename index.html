@@ -22,8 +22,15 @@
   <meta property="og:title" content="Pod Silosem — Agroturystyka w Giławach">
   <meta property="og:description" content="Trzy apartamenty dla 14 osób na ekologicznym gospodarstwie na Warmii. Jeziora, las, cisza.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/img/foto-06.webp">
+  <meta property="og:url" content="https://gilawy.pl/">
+  <meta property="og:image" content="https://gilawy.pl/assets/img/foto-06.webp">
   <meta property="og:locale" content="pl_PL">
+
+  <link rel="canonical" href="https://gilawy.pl/">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#f7f1e7">
+  <link rel="preload" as="image" href="assets/img/foto-06.webp">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,7 +49,9 @@
     "@type": "LodgingBusiness",
     "name": "Pod Silosem — Agroturystyka w Giławach",
     "description": "Agroturystyka na ekologicznym gospodarstwie rolnym. Trzy apartamenty dla 14 osób, jeziora i lasy Warmii.",
-    "image": "assets/img/foto-06.webp",
+    "image": "https://gilawy.pl/assets/img/foto-06.webp",
+    "url": "https://gilawy.pl/",
+    "sameAs": ["https://www.booking.com/hotel/pl/agroturystyka-gilawy.pl.html"],
     "telephone": "+48512720750",
     "email": "zedkrzeminski@poczta.onet.pl",
     "address": {
@@ -54,7 +63,13 @@
       "addressCountry": "PL"
     },
     "petsAllowed": true,
-    "numberOfRooms": 3
+    "numberOfRooms": 3,
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "9.4",
+      "bestRating": "10",
+      "reviewCount": "20"
+    }
   }
   </script>
 </head>
@@ -72,6 +87,7 @@
         <a href="#noclegi">Noclegi</a>
         <a href="#atrakcje">Atrakcje</a>
         <a href="#galeria">Galeria</a>
+        <a href="#opinie">Opinie</a>
         <a href="#cennik">Cennik</a>
         <a href="#kontakt" class="nav-cta">Kontakt</a>
       </nav>
@@ -92,6 +108,7 @@
         <a href="#kontakt" class="btn btn-primary">Zarezerwuj pobyt</a>
         <a href="tel:+48512720750" class="btn btn-ghost">📞 512 720 750</a>
       </div>
+      <a href="#opinie" class="hero-trust">⭐ <strong>9,4&nbsp;/&nbsp;10</strong> na Booking.com · 20 opinii gości</a>
     </div>
     <a href="#o-nas" class="hero-scroll" aria-label="Przewiń w dół">↓</a>
   </section>
@@ -300,8 +317,71 @@
     </div>
   </section>
 
+  <!-- ===== OPINIE ===== -->
+  <section class="section" id="opinie">
+    <div class="container">
+      <div class="section-head">
+        <p class="kicker">Opinie gości</p>
+        <h2>Goście o nas</h2>
+        <div class="score-badge">
+          <span class="score-num">9,4</span>
+          <div class="score-meta"><strong>Ocena gości</strong>20 opinii na Booking.com</div>
+        </div>
+      </div>
+      <div class="reviews">
+        <figure class="review-card">
+          <blockquote>„Wszystko ok. Miejsce piękne, gospodarze przemili, super jedzenie."</blockquote>
+          <figcaption>
+            <div><strong>Maciej</strong><small>para · 4 noce</small></div>
+            <span class="review-score">10/10</span>
+          </figcaption>
+        </figure>
+        <figure class="review-card">
+          <blockquote>„Przepyszne śniadanka! Menu dla dzieci! Przepiękna okolica."</blockquote>
+          <figcaption>
+            <div><strong>Sylwia</strong><small>rodzina z dziećmi · 5 nocy</small></div>
+            <span class="review-score">10/10</span>
+          </figcaption>
+        </figure>
+        <figure class="review-card">
+          <blockquote>„Rewelka, super posiłki, opieka oraz otoczenie."</blockquote>
+          <figcaption>
+            <div><strong>Aleksander</strong><small>para · 5 nocy</small></div>
+            <span class="review-score">10/10</span>
+          </figcaption>
+        </figure>
+        <figure class="review-card">
+          <blockquote>„Okolica, siedlisko, przemili gospodarze."</blockquote>
+          <figcaption>
+            <div><strong>Anna</strong><small>rodzina z małymi dziećmi · 3 noce</small></div>
+            <span class="review-score">10/10</span>
+          </figcaption>
+        </figure>
+        <figure class="review-card">
+          <blockquote>„Bardzo mili gospodarze. Świetne miejsce."</blockquote>
+          <figcaption>
+            <div><strong>Artur</strong><small>wyjazd ze znajomymi · 3 noce</small></div>
+            <span class="review-score">10/10</span>
+          </figcaption>
+        </figure>
+        <figure class="review-card">
+          <blockquote>„Super miejsce na złapanie oddechu."</blockquote>
+          <figcaption>
+            <div><strong>Urszula</strong><small>para · 1 noc</small></div>
+            <span class="review-score">8/10</span>
+          </figcaption>
+        </figure>
+      </div>
+      <div class="reviews-foot">
+        <a class="btn btn-primary js-book-booking" target="_blank" rel="noopener"
+           href="https://www.booking.com/hotel/pl/agroturystyka-gilawy.pl.html#tab-reviews">Zobacz wszystkie opinie na Booking.com →</a>
+        <p class="reviews-src">Cytaty pochodzą z opinii gości opublikowanych w serwisie Booking.com.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== CENNIK ===== -->
-  <section class="section" id="cennik">
+  <section class="section section-alt" id="cennik">
     <div class="container">
       <div class="section-head">
         <p class="kicker">Cennik</p>
