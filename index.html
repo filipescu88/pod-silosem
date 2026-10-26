@@ -11,6 +11,40 @@
     gtag('config', 'AW-17350584286');
   </script>
 
+  <!-- PostHog -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug getPageViewId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_viyBh6a5u47PLYNjKdWkm2vDEg25r6kVnGtECacyVh4t', {
+      api_host: 'https://eu.i.posthog.com',
+      person_profiles: 'identified_only',
+      autocapture: true,
+      capture_pageview: true,
+      capture_pageleave: true,
+      enable_heatmaps: true,
+      capture_dead_clicks: true,
+      loaded: function (ph) {
+        try {
+          var params = new URLSearchParams(window.location.search);
+          var gclid = params.get('gclid') || params.get('gbraid') || params.get('wbraid');
+          var utmSource = params.get('utm_source');
+          var sessionProps = {};
+          if (gclid) {
+            sessionProps.from_google_ads = true;
+            sessionProps.gclid = gclid;
+          } else if (utmSource && /google|adwords|gads/i.test(utmSource)) {
+            sessionProps.from_google_ads = true;
+          }
+          ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(function (k) {
+            if (params.get(k)) sessionProps[k] = params.get(k);
+          });
+          if (Object.keys(sessionProps).length > 0) {
+            ph.register_for_session(sessionProps);
+          }
+        } catch (e) {}
+      }
+    });
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pod Silosem — Agroturystyka w Giławach na Warmii</title>
@@ -504,16 +538,81 @@
       }
     }
     document.addEventListener('DOMContentLoaded', function () {
+      function phCapture(eventName, props) {
+        if (window.posthog && typeof window.posthog.capture === 'function') {
+          window.posthog.capture(eventName, props || {});
+        }
+      }
       // Kliknięcie w numer telefonu
       document.querySelectorAll('a[href^="tel:"]').forEach(function (link) {
         link.addEventListener('click', function () {
           gilawyTrackConversion('AW-17350584286/WjOwCJOV_b8cEN7Ps9FA');
+          phCapture('klik_telefon', {
+            href: link.getAttribute('href'),
+            label: (link.textContent || '').trim(),
+            section: (link.closest('section, header, footer') || {}).id || link.className || 'page'
+          });
         });
       });
-      // Kliknięcie "Zarezerwuj online (Booking)"
+      // Kliknięcie w adres e-mail
+      document.querySelectorAll('a[href^="mailto:"]').forEach(function (link) {
+        link.addEventListener('click', function () {
+          phCapture('klik_email', {
+            href: link.getAttribute('href'),
+            label: (link.textContent || '').trim()
+          });
+        });
+      });
+      // Kliknięcie "Zarezerwuj online (Booking)" lub opinie Booking
       document.querySelectorAll('.js-book-booking').forEach(function (link) {
         link.addEventListener('click', function () {
           gilawyTrackConversion('AW-17350584286/6HXTCPCo_r8cEN7Ps9FA');
+          phCapture('klik_booking', {
+            href: link.getAttribute('href'),
+            label: (link.textContent || '').trim()
+          });
+        });
+      });
+      // Kliknięcie w mapy dojazdowe / trasy rowerowe
+      document.querySelectorAll('.place-card a[href^="http"], .bike-maplink, .map-link').forEach(function (link) {
+        link.addEventListener('click', function () {
+          var card = link.closest('.place-card');
+          var title = card && card.querySelector('h3') ? card.querySelector('h3').textContent.trim() : (link.textContent || '').trim();
+          phCapture('klik_mapa_trasa', {
+            miejsce: title,
+            href: link.getAttribute('href')
+          });
+        });
+      });
+      // Kliknięcie w zdjęcia w galerii
+      document.querySelectorAll('#gallery .g-item').forEach(function (link, idx) {
+        link.addEventListener('click', function () {
+          var img = link.querySelector('img');
+          phCapture('klik_galeria_zdjecie', {
+            index: idx + 1,
+            src: link.getAttribute('href'),
+            alt: img ? img.alt : ''
+          });
+        });
+      });
+      // Kliknięcie w cenniku ("Zapytaj o termin / ofertę")
+      document.querySelectorAll('.price-card a.btn').forEach(function (link) {
+        link.addEventListener('click', function () {
+          var card = link.closest('.price-card');
+          var wariant = card && card.querySelector('h3') ? card.querySelector('h3').textContent.trim() : '';
+          phCapture('klik_cennik', {
+            wariant: wariant,
+            label: (link.textContent || '').trim()
+          });
+        });
+      });
+      // Kliknięcie w nawigację / kotwice sekcji
+      document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+        link.addEventListener('click', function () {
+          phCapture('klik_nawigacja', {
+            cel: link.getAttribute('href'),
+            label: (link.textContent || '').trim()
+          });
         });
       });
     });
